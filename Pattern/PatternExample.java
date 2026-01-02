@@ -41,9 +41,38 @@ public class PatternExample {
         for(int i = 0; i < n; i++,System.out.println()){
             for(int j = i; j < n-1; j++)
                 System.out.print(" ");
+
             for(int k = 0; k <= 2*i; k++)
                 System.out.print("*");
 
+        }
+    }
+
+    private static void invertedStarPyramid(int n){
+        for(int i = n; i > 0; i--,System.out.println()){
+            for(int j = i; j < n; j++)
+                System.out.print(" ");
+
+            for(int k = 0; k < 2*i-1; k++)
+                System.out.print("*");
+        }
+    }
+
+    private static void diamondStar(int n){
+        for(int i = 0; i < n; i++,System.out.println()){
+            for(int j = n; j > i;j--)
+                System.out.print(" ");
+
+            for(int k = 0; k <= 2*i; k++)
+                System.out.print("*");
+        }
+
+        for(int i = n-1; i >= 0; i--,System.out.println()){
+            for(int j = n; j > i;j--)
+                System.out.print(" ");
+
+            for(int k = 0; k <= 2*i; k++)
+                System.out.print("*");
         }
     }
     public static void main(String[] args){
@@ -56,7 +85,9 @@ public class PatternExample {
         // rightAngeledNumbersRepeating(n);
         // invertedRightPyramid(n);
         // invertedRightNumber(n);
-        starPyramid(n);
+        // starPyramid(n);
+        // invertedStarPyramid(n);
+        diamondStar(n);
         s.close();
     }
 }
