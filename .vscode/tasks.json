@@ -13,7 +13,11 @@
         {
             "label": "compile and run",
             "type": "shell",
-            "command": "javac \"${file}\" && java -cp \"${fileDirname}\" ${fileBasenameNoExtension} < input.txt > output.txt",
+            "command": "cmd",
+            "args": [
+                "/c",
+                "javac \"${file}\" && java -cp \"${fileDirname}\" ${fileBasenameNoExtension} < input.txt > output.txt"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
