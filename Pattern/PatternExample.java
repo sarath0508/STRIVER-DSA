@@ -18,13 +18,20 @@ public class PatternExample {
             for(int j = 1; j <= i; j++)
                 System.out.print(j+" ");
     }
+
+    private static void rightAngeledNumbersRepeating(int n){
+        for(int i = 1; i <= n; i++,System.out.println())
+            for(int j = 1; j <= i; j++)
+                System.out.print(i+" ");
+    }
     public static void main(String[] args){
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
 
         // rectangularStar(n);
         // rightAngledTriangle(n);
-        rightAngeledNumbers(n);
+        // rightAngeledNumbers(n);
+        rightAngeledNumbersRepeating(n);
         s.close();
     }
 }
