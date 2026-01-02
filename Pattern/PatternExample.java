@@ -30,6 +30,12 @@ public class PatternExample {
             for(int j = n-i; j > 0 ;j--)
                 System.out.print("* ");
     }
+
+    private static void invertedRightNumber(int n){
+        for(int i = n; i > 0; i--,System.out.println())
+            for(int j = 1; j <= i; j++)
+                System.out.print(j + " ");
+    }
     public static void main(String[] args){
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
@@ -38,8 +44,9 @@ public class PatternExample {
         // rightAngledTriangle(n);
         // rightAngeledNumbers(n);
         // rightAngeledNumbersRepeating(n);
-        invertedRightPyramid(n);
-        
+        // invertedRightPyramid(n);
+        invertedRightNumber(n);
+
         s.close();
     }
 }
