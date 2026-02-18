@@ -44,7 +44,7 @@ class ClimbingStairs {
     }
      */
 
-    /*Using Space Optimised DP */
+    /*Using Tabulation DP 
     private static int Solve(int n){
         int dp[] = new int[n+1];
         dp[0] = 1; // 1-step can be reached in 1 way only
@@ -53,7 +53,20 @@ class ClimbingStairs {
             dp[i] = dp[i-1] + dp[i-2];
         return dp[n-1];
     }
+        */
 
+    /*Using Space Optimised */
+    private static int Solve(int n){
+        int prev = 1;
+        int curr = 2;
+        int temp = 1;
+        for(int i = 2; i <= n; i++){
+            temp = prev + curr;
+            prev = curr; 
+            curr = temp;
+        }
+        return prev;
+    }
     public static void main(String args[]){
         Scanner s = new Scanner(System.in);
         int n=s.nextInt();
