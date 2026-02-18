@@ -56,7 +56,7 @@ class FrogJump{
     }
         */
 
-    /*Using tabulatio(dp) */
+    /*Using tabulatio(dp) 
     private static int Solve(int n,int[] heights){
         int dp[] = new int[n+1];
         dp[0]=0;
@@ -69,6 +69,24 @@ class FrogJump{
         }
             
         return dp[n-1];
+    }
+        */
+    
+    /*Using space optimised */
+    private static int Solve(int n,int[] heights){
+        int prev = 0;
+        int prev1 = 0;
+        for(int i = 1; i < n; i++){
+            int step2 = Integer.MAX_VALUE;
+            int step1 = prev + Math.abs(heights[i] - heights[i-1]); 
+            if(i > 1){
+                step2 = prev1 + Math.abs(heights[i] - heights[i-2]);
+            }
+            prev1 = prev;
+            prev = Math.min(step1,step2);
+        }
+            
+        return prev;
     }
     public static void main(String args[]){
         Scanner s = new Scanner(System.in);
