@@ -42,7 +42,7 @@ class FrogJumpWithK{
     }
     */
 
-    /*Using Memoization */
+    /*Using Memoization 
         private static int Solve(int heights[],int n,int k,int mem[]){
         if(n == 0)
             return 0;
@@ -57,6 +57,24 @@ class FrogJumpWithK{
         }
         return mem[n] = min;
     }
+        */
+
+    /*Using Tabulation(dp) */
+    private static int Solve(int heights[],int n,int k){
+        int dp[] = new int[n];
+        dp[0] = 0;
+        for(int i = 1; i < n; i++){
+            int finalMin = Integer.MAX_VALUE;
+            for(int j = 1; j <= k; j++){
+                if((i-j) >= 0){
+                    int min = dp[i - j] + Math.abs(heights[i] - heights[i - j]);
+                    finalMin = Math.min(min,finalMin);
+                }
+            }
+            dp[i] = finalMin;
+        }
+        return dp[n-1];
+    }
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
@@ -64,7 +82,7 @@ class FrogJumpWithK{
         for(int i = 0; i < n; i++)
             arr[i] = s.nextInt();
         int k = s.nextInt();
-        System.out.print(Solve(arr,n-1,k,new int[n]));
+        System.out.print(Solve(arr,n,k));
 
     }
 }
