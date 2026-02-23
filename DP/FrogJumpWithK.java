@@ -27,7 +27,7 @@ import java.util.Scanner;
 
 class FrogJumpWithK{
 
-    /*Using recursion */
+    /*Using recursion 
     private static int Solve(int heights[],int n,int k){
         if(n == 0)
             return 0;
@@ -40,6 +40,23 @@ class FrogJumpWithK{
         }
         return min;
     }
+    */
+
+    /*Using Memoization */
+        private static int Solve(int heights[],int n,int k,int mem[]){
+        if(n == 0)
+            return 0;
+        if(mem[n] != 0)
+            return mem[n];
+        int min = Integer.MAX_VALUE;
+        for(int i = 1; i <= k; i++){
+            if((n-i) >= 0){
+                int step = Solve(heights,n - i,k,mem) + Math.abs(heights[n] - heights[n - i]);
+                min = Math.min(step,min);
+            }
+        }
+        return mem[n] = min;
+    }
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
@@ -47,7 +64,7 @@ class FrogJumpWithK{
         for(int i = 0; i < n; i++)
             arr[i] = s.nextInt();
         int k = s.nextInt();
-        System.out.print(Solve(arr,n-1,k));
+        System.out.print(Solve(arr,n-1,k,new int[n]));
 
     }
 }
