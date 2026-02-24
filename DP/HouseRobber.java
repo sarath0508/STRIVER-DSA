@@ -31,7 +31,7 @@ import java.util.Scanner;
 
 class HouseRobber{
 
-    /*Using Recursion */
+    /*Using Recursion 
     private static int Solve(int n,int houses[]){
         if(n < 0)
             return 0;
@@ -40,12 +40,25 @@ class HouseRobber{
 
         return Math.max(taken,notTaken);
     }
+        */
+
+    /*Using Memoization */
+        private static int Solve(int n,int houses[],int mem[]){
+        if(n < 0)
+            return 0;
+        if(mem[n] != 0)
+            return mem[n];
+        int taken = houses[n] + Solve(n-2,houses,mem);
+        int notTaken = Solve(n - 1, houses,mem) ;
+
+        return mem[n] = Math.max(taken,notTaken);
+    }
     public static void main(String args[]){
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
         int houses[] = new int[n];
         for(int i = 0; i < n; i++)
             houses[i] = s.nextInt();
-        System.out.print(Solve(n - 1, houses));
+        System.out.print(Solve(n - 1, houses,new int[n]));
     }
 }
