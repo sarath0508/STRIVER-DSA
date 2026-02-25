@@ -42,7 +42,7 @@ class HouseRobber{
     }
         */
 
-    /*Using Memoization */
+    /*Using Memoization 
         private static int Solve(int n,int houses[],int mem[]){
         if(n < 0)
             return 0;
@@ -53,12 +53,27 @@ class HouseRobber{
 
         return mem[n] = Math.max(taken,notTaken);
     }
+        */
+
+    /*Using Tabulation(dp) */
+    private static int Solve(int n,int houses[]){
+        int dp[] = new int[n];
+        dp[0] = houses[0];
+        // dp[1] = Math.max(houses[0],houses[1]);
+        for(int i = 1; i < n; i++){
+            int taken = houses[i] + ( i > 1 ? dp[i - 2] : 0);
+            int notTaken = dp[i - 1] ;
+            dp[i] = Math.max(taken, notTaken);
+        }
+
+        return dp[n-1];
+    }
     public static void main(String args[]){
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
         int houses[] = new int[n];
         for(int i = 0; i < n; i++)
             houses[i] = s.nextInt();
-        System.out.print(Solve(n - 1, houses,new int[n]));
+        System.out.print(Solve(n, houses));
     }
 }
