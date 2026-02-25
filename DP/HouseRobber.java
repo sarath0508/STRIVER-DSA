@@ -55,7 +55,7 @@ class HouseRobber{
     }
         */
 
-    /*Using Tabulation(dp) */
+    /*Using Tabulation(dp) 
     private static int Solve(int n,int houses[]){
         int dp[] = new int[n];
         dp[0] = houses[0];
@@ -67,6 +67,21 @@ class HouseRobber{
         }
 
         return dp[n-1];
+    }
+        */
+
+    /*Using space optimised */
+    private static int Solve(int n,int houses[]){
+        int prev = houses[0];
+        int prev2 = 0;
+        for(int i = 1; i < n; i++){
+            int curr = Math.max(houses[i] + prev2, prev);
+
+            prev2 = prev;
+            prev = curr;
+        }
+
+        return prev;
     }
     public static void main(String args[]){
         Scanner s = new Scanner(System.in);
