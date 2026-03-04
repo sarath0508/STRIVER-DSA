@@ -26,7 +26,7 @@ This gives the optimal points.
 import java.util.Scanner;
 
 class NinjasTraining{
-    /*Using recursion*/
+    /*Using recursion
     private static int Solve(int tasks[][],int day,int prev){
         int maxPoint = 0;
         if(day == 0){
@@ -44,6 +44,29 @@ class NinjasTraining{
         }
         return maxPoint;
     }
+        */
+
+    /*Using memoization */
+    private static int Solve(int tasks[][],int day,int prev,int mem[][]){
+        int maxPoint = 0;
+        if(day == 0){
+            for(int i = 0; i < 3; i++)
+                if(i != prev)
+                    maxPoint = Math.max(maxPoint,tasks[0][i]);
+        }
+        else if(mem[day][prev] != 0)
+            return mem[day][prev];
+        else{
+            int currPoint = 0;
+            for(int i = 0; i < 3; i++)
+                if(i != prev){
+                    currPoint = tasks[day][i] + Solve(tasks, day - 1, i, mem); 
+                    maxPoint = Math.max(currPoint,maxPoint);
+                }
+            }
+        return mem[day][prev] = maxPoint;
+    }
+    
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int r = s.nextInt();
@@ -54,6 +77,6 @@ class NinjasTraining{
             for(int j = 0; j < c; j++)
                 arr[i][j] = s.nextInt();
 
-        System.out.print(Solve(arr,r-1,c));
+        System.out.print(Solve(arr,r-1,c,new int[r][c+1]));
     }
 }
